@@ -1,0 +1,27 @@
+# Problem 3 – Communication Channel Analyzer Problem Statement
+# A communication system sends messages as a continuous stream of lowercase characters.
+# To avoid signal interference, a valid communication window must contain no repeated characters.
+# Your task is to determine the length of the longest valid continuous segment of the stream that satisfies this condition.
+# Input Format
+# ·      A single line containing a string s
+# Output Format
+# Print a single integer — the length of the longest valid segment.
+# Constraints
+# ·      1 ≤ len(s) ≤ 10⁵
+# ·      s contains only lowercase English letters
+# Sample Input
+# abcabcbb
+# Sample Output
+# 3
+
+s = str(input("enter string:"))
+original_set = set()
+left = 0
+max_len = 0
+for right in range(len(s)):
+    while s[right] in original_set:
+        original_set.remove(s[left])
+        left += 1
+    original_set.add(s[right])
+    max_len = max(max_len,right-left+1)
+print(max_len)
