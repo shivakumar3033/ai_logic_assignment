@@ -1,0 +1,39 @@
+# Problem 2 – Maximum Signal Strength Problem Statement
+# You are monitoring a sensor that records integer signal values at fixed time intervals.
+# Due to system limitations, you can only analyze a fixed number of consecutive readings at a time.
+# Your task is to determine the maximum total signal strength obtainable from any consecutive block of exactly k readings.
+# Input Format
+# ·      First line: integer n (number of readings)
+# ·      Second line: n space-separated integers
+# ·      Third line: integer k
+# Output Format
+# Print a single integer representing the maximum total signal strength.
+# Constraints
+# ·      1 ≤ n ≤ 10⁵
+# ·      1 ≤ k ≤ n
+# ·      Signal values may be negative or positive
+# ·      -10⁴ ≤ value ≤ 10⁴
+# Sample Input
+# 6
+# 2 1 5 1 3 2
+# 3
+# Sample Output
+# 9
+# solution from here 
+n = int(input("enter the size of arr:"))
+arr = list(map(int,input().split()))
+k = int(input("enter the size:"))
+window_sum = 0
+max_sum = float("-inf")
+left = 0
+for i in range(k):
+    window_sum += arr[i]
+if window_sum > max_sum:
+    max_sum = window_sum
+for j in range(k,len(arr)):
+    window_sum += arr[j]
+    window_sum -= arr[left]
+    left += 1
+    if window_sum > max_sum:
+        max_sum = window_sum
+print(max_sum)
